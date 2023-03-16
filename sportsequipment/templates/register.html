@@ -84,7 +84,6 @@ background-attachment: fixed;">
     var username = document.getElementById("username");
     var password = document.getElementById("password");
     var repeatpw = document.getElementById("repeatpw");
-    console.log(1)
     var ok = document.getElementById("register");
     $('#register').click(function () {
         var usernamevl = username.value;
@@ -94,9 +93,14 @@ background-attachment: fixed;">
             document.getElementById('result').innerText = "两次输入密码不一致,请重新输入";
             return false;
         }
-        $('#result').style.color = "green";
-        document.getElementById('result').innerText = "注册成功，请前往主页进行登录";
-        window.open("https://www.csdn.com/");
+        else
+        {
+            document.getElementById('result').innerText = "注册成功，请前往主页进行登录";
+            $('#result').style.color = 'orange';
+<!--            window.open("https://www.csdn.com/");-->
+            return false;
+        }
+
     })
 </script>
 

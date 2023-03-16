@@ -50,7 +50,7 @@ background-attachment: fixed;">
                     <!--         登录按钮           -->
 
                     <div class="form-group">
-                        <button class="btn btn-success pull-right" id="id_btn" >登录</button>
+                        <button class="btn btn-success pull-right" id="id_btn" type="button">登录</button>
                     </div>
 
                 </div>
@@ -87,7 +87,7 @@ background-attachment: fixed;">
             success: function (data) {
                 //return  HttpResponse(json.dumps(response))数据的时候，需要将数据进行解析，才能进行处理。
                 //res=JSON.parse(data)
-                console.log(data)    ---这是jsonresponse处理的数据。
+<!--                console.log(data)    -&#45;&#45;这是jsonresponse处理的数据。-->
                 //console.log(res)
                 // data 现在是对象类型
                 if (data.status == 100) {
