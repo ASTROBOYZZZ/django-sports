@@ -23,5 +23,8 @@ urlpatterns = [
     path('logout', views.loginpage.logout, name='logout'),
     path('do_register', views.registerpage.do_register, name='do_register'),
     path('do_borrow', views.indexpage.do_borrow, name='do_borrow'),
+    path('get_message', views.messagepage.get_message, name='get_message'),
+    path('delete_message', views.messagepage.get_message, name='delete_message'),
+    path('read_message', views.messagepage.get_message, name='read_message'),
 
 ]

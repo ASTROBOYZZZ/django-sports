@@ -5,6 +5,7 @@ from .models import Users
 from .models import Equipment
 from .models import Repair
 from .models import Order
+from .models import Message
 import base64
 
 class common:
@@ -36,47 +37,60 @@ class common:
         return locals()
         equipment.status = status
         equipment.save()
-
-# Create your views here.+
-
 class model:
-
     def load_index(email):
         user = Users.objects.filter(email=email).first()
+        messages = Message.objects.filter(user=user,read=False)
         equipments = Equipment.objects.filter(status="空闲中").order_by('-count')
         return locals()
-    def borrow(email,eid):
+    def load_message(email):
+        user = Users.objects.filter(email=email).first()
+        messages = Message.objects.filter(user=user,read=False)
+        message = messages.first()
+        for message in messages:
+            message.part = message.content[0:30]
+        print(message.part)
+        return locals()
+    def load_repair(email):
+        user = Users.objects.filter(email=email).first()
+        messages = Message.objects.filter(user=user, read=False)
+        return locals()
+    def borrow(email, eid):
         return True
-
+    def get_message( email, mid):
+        user = Users.objects.filter(email=email).first()
+        message = Message.objects.filter(mid=mid).first()
+        return locals()
+    def do_login(email, password):
+        user = Users.objects.filter(email=email, password=password).first()
+        if user:
+            context = model.load_index(email)
+            return True, context
+        else:
+            message = "请检查您的账号密码"
+        return False, locals()
+    def delete_message(email,mid):
+        user = Users.objects.filter(email=email).first()
+        message = Message.objects.filter(mid=mid, user=user).first()
+        message.delete()
+        messages = Message.objects.filter(mid=mid)
+        return locals()
 class homepage:
     def home(request):
         return render(request , 'home.html')
-
 class loginpage:
     def login(request):
         return render(request,'login.html')
 
     def do_login(request):
-        response = {'status': 100, 'msg': None}
         email = request.POST.get('email')
         password = request.POST.get('password')
-
-        user = Users.objects.filter(email=email, password=password).first()
-        if user:
-            response['msg'] = "登录成功"
-        else:
-            response['status'] = 101
-            response['msg'] = "用户名或密码错误"
-        print(email, password, response)
-        response = JsonResponse(response)
-        if user:
+        ok,context = model.do_login(email, password)
+        print(email, password)
+        response = render(request, 'index.html', context)
+        if ok:
             response.set_cookie("test", common.sign(email), 86400)
         return response
-        # json.dumps(response),序列化得到一个json格式的字符串，js会将后台传过来的数据当做字符串进行处理
-        # return  HttpResponse(json.dumps(response))
-        # return redirect('http://www.baidu.com')
-        # return render(request,'login.html')
-
     def logout(request):
         response = render(request, 'login.html')
         response.delete_cookie("test")
@@ -103,16 +117,39 @@ class messagepage:
         cookie1 = request.COOKIES.get('test')
         if common.checkcookie(cookie1):
             email = common.get_email_by_cookie(cookie1)
-            user = Users.objects.filter(email=email).first()
-            return render(request, 'message.html', {"user": user})
+            context = model.load_message(email)
+            return render(request, 'message.html', context)
+        return render(request, 'login.html')
+    def get_message(request):
+        cookie1 = request.COOKIES.get('test')
+        mid = request.GET.get('mid')
+        if common.checkcookie(cookie1):
+            email = common.get_email_by_cookie(cookie1)
+            context = model.get_message(email,mid)
+            return render(request, 'messagedetail.html', context)
         return render(request,'login.html')
+    def delete_message(request):
+        cookie1 = request.COOKIES.get('test')
+        mid = request.COOKIES.get('test')
+        if common.checkcookie(cookie1):
+            email = common.get_email_by_cookie(cookie1)
+            context = model.delete_message(email, mid)
+            return render(request, 'messagedetail.html', context)
+        return render(request, 'login.html')
+    def read_messagedetail(request):
+        cookie1 = request.COOKIES.get('test')
+        if common.checkcookie(cookie1):
+            email = common.get_email_by_cookie(cookie1)
+            user = Users.objects.filter(email=email).first()
+            return render(request, 'messagedetail.html', {"user": user})
+        return render(request, 'login.html')
 class repairpage:
     def repair(request):
         cookie1 = request.COOKIES.get('test')
         if common.checkcookie(cookie1):
             email = common.get_email_by_cookie(cookie1)
-            user = Users.objects.filter(email=email).first()
-            return render(request, 'repair.html', {"user": user})
+            context = model.load_repair(email)
+            return render(request, 'repair.html', context)
         return render(request,'login.html')
 
     def do_repair(request):

@@ -42,6 +42,11 @@ background-attachment: fixed;">
                </div>
                <p class="text-center">没有账户?<br/> <a href="{% url 'app:register' %}">注册账户</a> </p>
             </form>
+            {% if message %}
+               <div class="alert alert-primary" role="alert" id="message">
+                  {{message}}
+               </div>
+            {%endif%}
          </div>
       </div>
       <!--/ User Singin End -->
@@ -64,7 +69,6 @@ background-attachment: fixed;">
       $("#submit_button").click(function (e) {
             var form_email = $('#form-email');
             var form_password = $('#form-password');
-
             let email = form_email.val();
             let password = form_password.val();
             if (IsEmail(email)){
@@ -76,25 +80,14 @@ background-attachment: fixed;">
                    },
                    type: 'POST',
                    dataType: 'json',
-                   success: function (data) {
-                       if (data.status == 100) {
-                           //登录成功，重定向到首页
-                           location.href = "{% url 'app:index' %}"
-                       } else {
-                           location.href = "{% url 'app:login' %}"
-                           alert(data.msg);
-                           return true;
-                       }
-                   },
-                   error: function (data) {
-                       console.log(data)     //用户名密码不正确的时候打印到，前端的控制台
-                   }
                };
                console.log(option);
                $.ajax(option);
-               return true;
             }
-            alert("请检查您的邮箱格式!");
+            else{
+               alert("请检查邮箱格式");
+               return false;
+            }
             return true;
       });
       </script>

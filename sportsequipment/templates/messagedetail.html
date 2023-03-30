@@ -11,7 +11,7 @@
    <meta name="keyword" content="">
    <meta name="author" content="" />
    <!-- Page Title here to disign -->
-   <title>消息中心</title>
+   <title>消息详情</title>
    {%include 'head.html'%}
 </head>
 
@@ -44,6 +44,7 @@
                      <div class="card bd-l-0-force bd-t-0-force bd-b-0-force">
 
                         <div class="card-body">
+
                            <div class="btn-toolbar" role="toolbar">
                               <div class="btn-group">
                                  <button type="button" class="btn btn-light">
@@ -52,40 +53,52 @@
                                  <button type="button" class="btn btn-light">
                                     <strong><a href="{%url 'app:read_message'%}?mid={{mail.eid}}">标记为已读</a></strong>
                                  </button>
+                                 <button type="button" class="btn btn-light">
+                                    <strong><a href="{%url 'app:message'%}">返回</a></strong>
+                                 </button>
                               </div>
                            </div>
 
-                           <div class="table-responsive mg-t-20 mg-b-15">
-                              <table class="table table-hover mb-0">
-                                 <tbody>
-                                    <tr class="active">
-                                       <td class="wd-5p">
-                                          <div class="d-flex custom-control custom-checkbox">
-                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                             <label class="custom-control-label" for="customCheck1"></label>
-                                          </div>
-                                       </td>
-                                       <td class="wd-15p">admin</td>
-                                       <td class="wd-55p">
-                                          <span class="badge badge-outlined badge-danger mr-2">系统</span>
-                                          <a href="{% url 'app:get_message' %}?mid={{message.mid}}">{{message.part}}...</a>
-                                       </td>
-                                       <td class="wd-25p">
-                                          <p class="mb-0 tx-10 tx-gray-500">01-02-2019, 11:46AM</p>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
+                           <div class="pd-y-15 mg-t-15 bd-b">
+
+                              <div class="row">
+                                 <div class="col-md-6 toolbar-left">
+                                    <!--Sender Information-->
+                                    <div class="d-flex">
+                                       <span class="mg-r-10">
+                                       <img src="http://via.placeholder.com/150" class="img-fluid wd-40 rounded-circle" alt="">
+                                       </span>
+                                       <div class="text-left">
+                                          <div class="tx-bold">Lisa D. Smith</div>
+                                          <span >example@mail.com</span>
+                                       </div>
+                                    </div>
+                                 </div>
+
+
+                                 <div class="col-md-6 text-md-right hidden-xs">
+                                    <!--Details Information-->
+                                    <p class="mg-0"><small >{{message.send_time}}</small></p>
+                                 </div>
+                              </div>
                            </div>
-
-
-                        </div>
+                           <div class="row mg-t-20 mg-b-15">
+                              <div class="col-md-12">
+                                 <div class="mg-b-20 bd-b">
+                                     <p>
+                                        <strong>
+                                           {{message.content}}
+                                        </strong>
+                                     </p>
+                                 </div>
+                              </div>
+                           </div>
                      </div>
                   </div>
                   <!--/ End email-rightbar -->
                </div>
             </div>
-
+         </div>
          {%include 'footer.html'%}
          <!--/ Page Footer End -->
       </div>

@@ -38,9 +38,6 @@ background-attachment: fixed;">
          <div class="card shadow-none pd-20 mx-auto wd-280 text-center bd-1 align-self-center">
             <h4 class="card-title mt-3 text-center">Create Account</h4>
             <p class="text-center">免费注册账号</p>
-            {% if message %}
-                  <div style="color: firebrick">{{ message }}</div>
-            {% endif %}
             <form action = "{% url 'app:do_register'%}" method = "post" id="registerForm">
                <div class="form-group input-group">
                   <div class="input-group-prepend">
@@ -77,6 +74,11 @@ background-attachment: fixed;">
                </div>
                <p class="text-center">已有账户？ <a href="{% url 'app:login' %}">登录</a> </p>
             </form>
+            {% if message %}
+               <div class="alert alert-primary" role="alert" id="message">
+                  {{message}}
+               </div>
+            {%endif%}
          </div>
       </div>
       <!--/ User Singup End -->
@@ -98,16 +100,6 @@ background-attachment: fixed;">
       }
       function testpassword(str1,str2) {
             var reg = /^(?=.*[a-zA-Z])(?=.*\d).{1,9}$/;
-            if (reg.test(str1) )
-            {
-               alert(1);
-
-            }
-            if (str1==str2)
-            {
-               alert(2);
-
-            }
             return  reg.test(str1) && str1==str2;
       }
       $('#submit_button').click(function (e) {

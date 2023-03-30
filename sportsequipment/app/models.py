@@ -38,13 +38,26 @@ class Order(models.Model):
         db_table = "order"
 
 class Repair(models.Model):
-    fid = models.BigAutoField('维修编号',primary_key=True)
+    rid = models.BigAutoField('维修编号', primary_key=True)
     user = models.ForeignKey(to=Users, on_delete=models.CASCADE)
     equipment = models.ForeignKey(to=Equipment, on_delete=models.CASCADE)
-    reason = models.TextField("状态", max_length=20,default="待处理")
+    reason = models.TextField("原因", max_length=20, null=False)
     apply_time = models.DateField("维修上报时间", auto_now_add=True, null=False)
     solve_time = models.DateField("处理时间", auto_now=True, null=False)
-    status = models.CharField("状态", max_length=20,default="待处理")
+    status = models.CharField("状态", max_length=20, default="待处理")
     # 待处理，器材维修完毕，器材无法维修
     class Meta:
         db_table = "repair"
+
+
+class Message(models.Model):
+    mid = models.BigAutoField('邮件编号',primary_key=True)
+    user = models.ForeignKey(to=Users, on_delete=models.CASCADE)
+    back = models.BooleanField("归还提醒", default=False)
+    read = models.BooleanField("是否已读", default=False)
+    # author = models.ForeignKey(to=Users, on_delete=models.CASCADE)
+    send_time = models.DateField("发送时间", auto_now_add=True, null=False)
+    content = models.TextField("正文", null=False)
+    # 待处理，器材维修完毕，器材无法维修
+    class Meta:
+        db_table = "message"
