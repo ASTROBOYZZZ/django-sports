@@ -1,0 +1,65 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>欢迎注册成为无畏的健身爱好者</title>
+<!--    &lt;!&ndash;用百度的静态资源库的cdn安装bootstrap环境&ndash;&gt;-->
+<!--    &lt;!&ndash; Bootstrap 核心 CSS 文件 &ndash;&gt;-->
+<!--    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">-->
+<!--    &lt;!&ndash;font-awesome 核心我CSS 文件&ndash;&gt;-->
+<!--    <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">-->
+<!--    &lt;!&ndash; 在bootstrap.min.js 之前引入 &ndash;&gt;-->
+<!--    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>-->
+<!--    &lt;!&ndash; Bootstrap 核心 JavaScript 文件 &ndash;&gt;-->
+<!--    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>-->
+
+<!--    引入自定义样式-->
+    <link rel="stylesheet" href="{% static 'css/frozenui.css' %}">
+
+<!--    <link rel="stylesheet" href="{% static 'css/base.css' %}">-->
+<!--    <link rel="stylesheet" href="{% static 'AdminLTE/plugins/select2/select2.css' %}">-->
+    <link rel="shortcut icon" href="{% static 'img/neau_cut.png' %}">
+    <link rel="stylesheet" href="{% static 'css/login.css' %}">
+</head>
+
+<body background="{% static 'assets/img/background.jpg' %}" style=" background-repeat:no-repeat ;
+background-size:100% 100%;
+background-attachment: fixed;">
+    <div class="c-login">
+    <h1>注册(*为必填内容)</h1>
+    {% if message %}
+        <div style="color: firebrick">{{ message }}</div>
+    {% endif %}
+    <form class="loginForm" id="registerForm" action="{% url 'app:do_register' %}" method="post">
+        {% csrf_token %}
+        <input name="user_name" type="text" class="userLogo" placeholder="请您的姓名*" lay-verify="required|username"/>
+        <input name="user_id" type="text" placeholder="请输入学号*" lay-verify="required"/>
+        <input name="user_email" type="text" class="userLogo" placeholder="请输入邮箱*" lay-verify="email|required"/>
+        <input name="password" type="password" placeholder="请输入密码*" lay-verify="required|password"/>
+        <input name="repeatpwd" type="password" placeholder="请输入确认密码*" lay-verify="required|password"/>
+        <input type="button" class="btn " value="注册" id="regBtn"/>
+    </form>
+</div>
+</body>
+
+<script type="text/javascript" src="{% static 'js/jquery.min.js' %}"></script>
+<script type="text/javascript" src="{% static 'js/base.js' %}"></script>
+<script src="{% static 'AdminLTE/plugins/select2/select2.full.min.js' %}"></script>
+<script>
+    $('#regBtn').click(function () {
+        if (!checkInputFunction($('#regBtn'))) {
+            return false;
+        } else {
+            var form = document.getElementById("registerForm");
+<!--            console.log(form);-->
+            form.submit();
+        }
+        //下面书写验证成功后执行的内容
+    });
+</script>
+
+</html>

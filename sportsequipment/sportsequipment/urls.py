@@ -17,14 +17,18 @@ from django.contrib import admin
 from django.urls import path
 
 from django.contrib import admin
-from django.urls import path
-from app import views
+from django.conf.urls import include
+from django.urls import path, include, re_path
+from django.views.static import serve
+from sportsequipment.settings import MEDIA_ROOT
+
+app_name = 'app'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('' , views.home , name='home'), #添加映射
-    path('search/' , views.search , name='search'),
-    path('gettime/' , views.gettime , name='gettime'),
-    path('login/', views.login, name='login'),
-    path('register/', views.register, name='register'),
+    path('', include('app.urls')),
+    # 处理图片显示的url,使用Django自带serve,传入参数告诉它去哪个路径找，我们有配置好的路径MEDIAROOT
+    re_path(r'^media/(?P<path>.*)', serve, {"document_root": MEDIA_ROOT }),
+    # url(r'^media/(?P<path>.*)$',serve,{"document_root":MEDIA_ROOT}),
+    # path('' , views.home , name='home'), #添加映射
 ]

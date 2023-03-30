@@ -1,0 +1,25 @@
+{% load static %}
+<script src="{%static 'assets/plugins/jquery/jquery.min.js'%}"></script>
+<script src="{%static 'assets/plugins/jquery-ui/jquery-ui.js'%}"></script>
+<script src="{%static 'assets/plugins/popper/popper.js'%}"></script>
+<script src="{%static 'assets/plugins/feather-icon/feather.min.js'%}"></script>
+<script src="{%static 'assets/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+<script src="{%static 'assets/plugins/pace/pace.min.js'%}"></script>
+<script src="{%static 'assets/plugins/toastr/toastr.min.js'%}"></script>
+<script src="{%static 'assets/plugins/countup/counterup.min.js'%}"></script>
+<script src="{%static 'assets/plugins/waypoints/waypoints.min.js'%}"></script>
+<script src="{%static 'assets/plugins/chartjs/chartjs.js'%}"></script>
+<script src="{%static 'assets/plugins/apex-chart/apexcharts.min.js'%}"></script>
+<script src="{%static 'assets/plugins/apex-chart/irregular-data-series.js'%}"></script>
+<script src="{%static 'assets/plugins/simpler-sidebar/jquery.simpler-sidebar.min.js'%}"></script>
+<script src="{%static 'assets/js/dashboard/sales-dashboard-init.js'%}"></script>
+<script src="{%static 'assets/js/jquery.slimscroll.min.js'%}"></script>
+<script src="{%static 'assets/js/highlight.min.js'%}"></script>
+<script src="{%static 'assets/js/app.js'%}"></script>
+<script src="{%static 'assets/js/custom.js'%}"></script>
+
+<script>
+   $("#logout").click(function (e){
+           location.href = "{% url 'app:index' %}"
+      });
+</script>

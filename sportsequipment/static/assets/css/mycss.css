@@ -1,0 +1,22 @@
+table.mt {
+	width: 1000px;
+	border-spacing: 0px;
+	border-right:1px solid #aaa;
+	border-bottom:1px solid #aaa;
+}
+table.mt td {
+	border-left:1px solid #aaa;
+	border-top:1px solid #aaa;
+	padding:10px;
+}
+table.mt thead tr {
+	background: #339;
+	color: #fff;
+}
+table.mt tbody tr:nth-child(even) {
+	background: #eee;
+}
+table.mt tbody tr:hover {
+	background: #ccc;
+	color: #fff;
+}

@@ -1,0 +1,117 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="X-UA-Compatible" content="ie=edge">
+        <title>Document</title>
+        <!--            用百度的静态资源库的cdn安装bootstrap环境-->
+<!--         Bootstrap 核心 CSS 文件-->
+        <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
+        <!--font-awesome 核心我CSS 文件-->
+        <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
+        <!-- 在bootstrap.min.js 之前引入 -->
+        <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
+        <!-- Bootstrap 核心 JavaScript 文件 -->
+        <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+
+
+
+        <link rel="stylesheet" href="{% static 'css/index.css' %}">
+
+
+
+    </head>
+    <body>
+        <header>
+            <nav class="b_clear">
+                <div class="nav_logo l_float">
+                    <img src="{% static 'img/neau_cut.png'%}" alt="">
+                </div>
+                <div class="nav_link r_float">
+                    <ul>
+                        <li><a href="#">返回首页</a></li>
+                        <li><a href="#">关于我们</a></li>
+                        <li><a href="#">联系我们</a></li>
+
+                    </ul>
+                </div>
+            </nav>
+        </header>
+        <div class="container">
+            <div class="login_body l_clear">
+                <div class="login_form l_float">
+                    <div class="login_top">
+                        <img src="{% static 'img/neau.png'%}" alt="" class="">
+                        
+                        <div class="login_tags b_clear">
+                            <span class="top_tag l_float active" onClick="PwdLogin()">密码登录</span>
+                            <span class="top_tag r_float" onClick="QrcodeLogin()">扫码登录</span>
+                        </div>
+                    </div>
+                    <div class="login_con">
+                        <form action="{% url 'app:login' %}" method="POST">
+                            <div>
+                                <label for="user_name">学号</label>
+                                <input type="text" name="" id="user_id" placeholder="学号">
+                                <img src="{% static 'img/icons/user.svg' %}">
+                                <p class="tips hidden">请检查您的账号</p>
+                            </div>
+                            <div>
+                                <label for="user_pwd">密码</label>
+                                <input type="password" name="" id="user_pwd" placeholder="请输入账户密码">
+                                <img src="{% static 'img/icons/lock.svg' %}">
+                                <p class="tips hidden">请检查您的密码</p>
+                            </div>
+                            <div class="b_clear submit">
+                                
+                                <button type="button" id="id_login">登&nbsp;&nbsp;录</button>
+                                <a href="{% url 'app:register' %}" class="r_float">点击注册你的账号!</a>
+                                <p class="tips hidden">登录失败，请检查您的账户与密码</p>
+                            </div>
+                        </form>   
+                    </div>
+                    <div class="login_con hidden">
+                        <div class="qr_code">
+                                <img src="{% static 'img/qr.png'%}" alt="">
+                                <p>请使用微信扫码登录<br>仅支持已绑定微信的账户进行快速登录</p>
+                        </div>
+                        
+                    </div>
+                    <span class="error" style="color: red"></span>
+                    
+                </div>
+                <div class="login_ad l_float" id="AdImg">
+                    <a href="">查看详情</a>
+                </div>
+            </div>
+        </div>
+
+        <script src="{% static 'js/login.js'%}"></script>
+    </body>
+
+    <script>
+        $('#id_login').click(function () {
+            $.ajax({
+                url: '/login/',
+                type: "POST",
+                data: { user_id: $('#user_id').val(), user_pwd: $('#user_pwd').val() },
+                success: function (data) {
+                    if (data.status == 100) {
+                        //登录成功，重定向到首页
+                        location.href = 'http://www.baidu.com'
+                    } else {
+                        //登录失败
+                        //$('.error').html(data.msg).css({'color':'red'})
+                        $('.error').html(data.msg)
+                    }
+                },
+                error: function (data) {
+                    console.log(data)     //用户名密码不正确的时候打印到，前端的控制台
+                }
+            })
+        })
+    </script>
+
+</html>

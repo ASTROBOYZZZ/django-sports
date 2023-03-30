@@ -1,0 +1,93 @@
+﻿{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="keyword" content="">
+   <meta name="author" content="" />
+   <!-- Page Title here to disign -->
+   <title>首页</title>
+   {%include 'head.html'%}
+</head>
+
+
+<body>
+   <!--================================-->
+   <!-- Page Container Start -->
+   <!--================================-->
+   <div class="page-container">
+      <!--================================-->
+      <!-- Page Sidebar Start -->
+      <!--================================-->
+      {%include 'boardside.html'%}
+      <!--/ Page Sidebar End -->
+      <!--================================-->
+      <!-- Page Content Start -->
+      <!--================================-->
+      <div class="page-content">
+         <!--================================-->
+         <!-- Page Header Start -->
+         <!--================================-->
+         {%include 'top.html'%}
+         <!--/ Page Header End -->
+         <!--================================-->
+         <!-- Page Inner Start -->
+         <!--================================-->
+         <div class="page-inner">
+            <!-- Main Wrapper -->
+            <div id="main-wrapper">
+               <!--================================-->
+               <!-- Breadcrumb Start -->
+               <!--================================-->
+               <!-- here to design -->
+               <div class="row row-xs">
+                     {% for i in equipments %}
+                        <div class="col-sm-6 col-xl-3">
+                           <div class="card mg-b-20">
+                              <div class="card-body text-center">
+                                 <img src="{{ MEDIA_URL }}{{i.img_url}}" alt="" class="img-fluid wd-100p ht-250">
+                                 <h5 class="tx-dark tx-13 tx-medium mg-y-15 d-block">{{i.brand}}{{i.ename}}</h5>
+                                 <p class="text-center mt-3">已经被借出{{i.count}}次</p>
+                                 <a href="{%url 'app:do_borrow'%}?eid={{i.eid}}" class="btn btn-sm btn-label-primary">立即借用</a>
+                                 <a href="" class="btn btn-sm btn-label-success">暂时不看</a>
+                              </div>
+                           </div>
+                        </div>
+                     {% endfor %}
+                  </div>
+               <!--/ Breadcrumb End -->
+               <!--================================-->
+            </div>
+            <!--/ Main Wrapper End -->
+         </div>
+         <!-- Label Alignment Form Start -->
+         <!--================================-->
+         <!--/ Label Alignment Form End -->
+         <!--================================-->
+
+         <!--================================-->
+         <!--/ Page Inner End -->
+         <!--================================-->
+         <!--================================-->
+         <!-- Page Footer Start -->
+         <!--================================-->
+         {%include 'footer.html'%}
+         <!--/ Page Footer End -->
+      </div>
+      <!--/ Page Content End -->
+   </div>
+   <!--/ Page Container End -->
+   <!--================================-->
+
+   <!--================================-->
+   <!-- Footer Script -->
+   <!--================================-->
+   {%include 'commonjs.html'%}
+</body>
+
+</html>

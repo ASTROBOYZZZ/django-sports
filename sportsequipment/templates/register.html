@@ -1,107 +1,129 @@
 {% load static %}
 
 <!DOCTYPE html>
-<html lang="zh-CN">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>register</title>
-    <!--用百度的静态资源库的cdn安装bootstrap环境-->
-    <!-- Bootstrap 核心 CSS 文件 -->
-    <link href="http://apps.bdimg.com/libs/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet">
-    <!--font-awesome 核心我CSS 文件-->
-    <link href="//cdn.bootcss.com/font-awesome/4.3.0/css/font-awesome.min.css" rel="stylesheet">
-    <!-- 在bootstrap.min.js 之前引入 -->
-    <script src="http://apps.bdimg.com/libs/jquery/2.0.0/jquery.min.js"></script>
-    <!-- Bootstrap 核心 JavaScript 文件 -->
-    <script src="http://apps.bdimg.com/libs/bootstrap/3.3.0/js/bootstrap.min.js"></script>
-
-
-    <link rel="stylesheet" href="{% static 'css/login.css' %}">
-</head>
-
-<body background="{% static 'assets/img/background.jpg' %}" style=" background-repeat:no-repeat ;
+<html lang="zxx">
+   <head>
+      <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+      <meta charset="utf-8">
+	  <meta http-equiv="x-ua-compatible" content="IE=edge">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+	  <meta name="description" content="">
+	  <meta name="keyword" content="">
+	  <meta name="author"  content=""/>
+      <!-- Page Title -->
+      <title>注册</title>
+      <!-- Main CSS -->			
+      <link type="text/css" rel="stylesheet" href="{% static 'assets/plugins/bootstrap/css/bootstrap.min.css'%}"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'assets/plugins/font-awesome/css/font-awesome.min.css'%}"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'assets/plugins/simple-line-icons/css/simple-line-icons.css'%}">
+      <link type="text/css" rel="stylesheet" href="{% static 'assets/plugins/ionicons/css/ionicons.css'%}">
+      <link type="text/css" rel="stylesheet" href="{% static 'assets/css/app.min.css'%}"/>
+      <link type="text/css" rel="stylesheet" href="{% static 'assets/css/style.min.css'%}"/>
+      <!-- Favicon -->
+      <link rel="icon" href="{% static 'img/neau_cut.png'%}" type="image/x-icon">
+      <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+      <!-- WARNING: Respond.js doesn"t work if you view the page via file:// -->
+      <!--[if lt IE 9]>
+      <script src="http://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
+      <script src="http://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+      <![endif]-->
+   </head>
+   <body background="{% static 'assets/images/background.jpg' %}" style=" background-repeat:no-repeat ;
 background-size:100% 100%;
 background-attachment: fixed;">
-
-    <div class="container">
-        <div class="form row">
-            <form class="form-horizontal col-sm-offset col-md-offset-3">
-                <h3 class="form-title">注册</h3>
-                <div class="col-sm-9 col-md-9">
-                    <div class="form-group">
-                        <!--        用户名图标和用户名输入框            -->
-                        <i class="fa fa-user" aria-hidden="true"></i>
-                        <input class="form-control required" type="number" name="username" id="username"
-                            placeholder="请输入用户名" required>
-                    </div>
-
-                    <!--        密码图标和密码输入框                -->
-                    <div class="form-group">
-                        <i class="fa fa-key" aria-hidden="true"></i>
-                        <input class="form-control required" type="password" name="password" id="password"
-                            placeholder="请输入密码" required>
-                    </div>
-                    <!--          确认密码              -->
-                    <div class="form-group">
-                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                        <input class="form-control required" type="password" name="repeatpw" id="repeatpw"
-                            placeholder="请确认密码" required>
-                    </div>
-                    <!--        邮箱                -->
-                    <div class="form-group">
-                        <i class="fa fa-envelope" aria-hidden="true"></i>
-                        <input class="form-control required" type="email" name="email" id="email" placeholder="请输入邮箱"
-                            required>
-                    </div>
-
-                    <div class="form-group">
-                    </div>
-
-                    <!--注册按钮-->
-                    <div class="form-group">
-                        <input type="submit" value="注册" class="btn btn-success pull-right" id="register">
-                        <input type="button" onclick="window.location.href='../login'" class="btn btn-info pull-left"
-                            id="back_btn" value="返回" />
-                    </div>
-
-                    <!-- 描述注册状态 -->
-                    <div>
-                        <p id="result" style="color: red;font-family: 楷体"></p>
-                    </div>
-
-                </div>
+      <!--================================-->
+      <!-- User Singup Start -->
+      <!--================================-->		
+      <div class="ht-100v d-flex">
+         <div class="card shadow-none pd-20 mx-auto wd-280 text-center bd-1 align-self-center">
+            <h4 class="card-title mt-3 text-center">Create Account</h4>
+            <p class="text-center">免费注册账号</p>
+            {% if message %}
+                  <div style="color: firebrick">{{ message }}</div>
+            {% endif %}
+            <form action = "{% url 'app:do_register'%}" method = "post" id="registerForm">
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"> <i class="fa fa-user"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="请输入你的名字" type="text" name = "user_name" maxlength="20" required>
+               </div>
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"> <i class="fa fa-envelope"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="请输入你的邮箱号" type="text" name = "email" maxlength="20" required>
+               </div>
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"> <i class="fa fa-building"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="请输入你的学号" type="text" name = "uid" maxlength="20" required>
+               </div>
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="请输入你的密码" type="password" name = "password" maxlength="12" required>
+               </div>
+               <div class="form-group input-group">
+                  <div class="input-group-prepend">
+                     <span class="input-group-text"> <i class="fa fa-lock"></i> </span>
+                  </div>
+                  <input class="form-control form-control-sm" placeholder="请重复输入你的密码" type="password" name = "re_password" maxlength="12" required>
+               </div>
+               <div class="form-group">
+                  <input type="button" class="btn btn-custom-primary btn-block tx-13" id="submit_button" value ="注册账户" name = "user_reg" >
+               </div>
+               <p class="text-center">已有账户？ <a href="{% url 'app:login' %}">登录</a> </p>
             </form>
-        </div>
-    </div>
-</body>
+         </div>
+      </div>
+      <!--/ User Singup End -->
+      <!--================================-->
+      <!-- Footer Script -->
+      <!--================================-->
+      <script src="{%static 'assets/plugins/jquery/jquery.min.js'%}"></script>
+      <script src="{%static 'assets/plugins/jquery/base.js'%}"></script>
+      <script src="{%static 'assets/plugins/jquery-ui/jquery-ui.js'%}"></script>
+      <script src="{%static 'assets/plugins/popper/popper.js'%}"></script>
+      <script src="{%static 'assets/plugins/bootstrap/js/bootstrap.min.js'%}"></script>
+      <script src="{%static 'assets/plugins/pace/pace.min.js'%}"></script>
+      <script src="{%static 'assets/js/jquery.slimscroll.min.js'%}"></script>
+      <script src="{%static 'assets/js/custom.js'%}"></script>
+      <script>
+      function IsEmail(str) {
+            var reg = /^([a-zA-Z]|[0-9])(\w|\-)+@[a-zA-Z0-9]+\.([a-zA-Z]{2,4})$/;
+            return  reg.test(str);
+      }
+      function testpassword(str1,str2) {
+            var reg = /^(?=.*[a-zA-Z])(?=.*\d).{1,9}$/;
+            if (reg.test(str1) )
+            {
+               alert(1);
 
+            }
+            if (str1==str2)
+            {
+               alert(2);
 
-
-
-<script>
-    var username = document.getElementById("username");
-    var password = document.getElementById("password");
-    var repeatpw = document.getElementById("repeatpw");
-    var ok = document.getElementById("register");
-    $('#register').click(function () {
-        var usernamevl = username.value;
-        var passwordvl = password.value;
-        var repeatpwvl = repeatpw.value;
-        if (passwordvl!=repeatpwvl) {
-            document.getElementById('result').innerText = "两次输入密码不一致,请重新输入";
+            }
+            return  reg.test(str1) && str1==str2;
+      }
+      $('#submit_button').click(function (e) {
+            var form = document.getElementById("registerForm");
+            let formData = new FormData(form);
+            if (IsEmail(formData.get("email"))){
+               if(testpassword(formData.get("password"),formData.get("re_password"))){
+                  form.submit();
+                  return true;
+               }
+               alert("请检查两次输入密码是否一致!，密码至少包含字母、数字，1-9位");
+               return false;
+            }
+            alert("请检查您的邮箱格式!");
             return false;
-        }
-        else
-        {
-            document.getElementById('result').innerText = "注册成功，请前往主页进行登录";
-            $('#result').style.color = 'orange';
-<!--            window.open("https://www.csdn.com/");-->
-            return false;
-        }
-
-    })
-</script>
-
+      });
+      </script>
+   </body>
 </html>

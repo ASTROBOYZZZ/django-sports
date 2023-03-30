@@ -1,0 +1,109 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="keyword" content="">
+   <meta name="author" content="" />
+   <!-- Page Title here to disign -->
+   <title>我的租借</title>
+   {%include 'head.html'%}
+</head>
+
+
+<body>
+   <!--================================-->
+   <!-- Page Container Start -->
+   <!--================================-->
+   <div class="page-container">
+      <!--================================-->
+      <!-- Page Sidebar Start -->
+      <!--================================-->
+      {%include 'boardside.html'%}
+      <!--/ Page Sidebar End -->
+      <!--================================-->
+      <!-- Page Content Start -->
+      <!--================================-->
+      <div class="page-content">
+         <!--================================-->
+         <!-- Page Header Start -->
+         <!--================================-->
+         {%include 'top.html'%}
+
+         <div class="page-inner pd-0-force mg-0-force ht-100vh bg-white">
+               <div class="row no-gutters wd-100p clearfix">
+				  <!--================================-->
+				  <!-- Start Left sidebar -->
+				  <!--================================-->
+                  <div class="col-md-8 col-lg-9 email-right-sidebar">
+                     <div class="card bd-l-0-force bd-t-0-force bd-b-0-force">
+
+                        <div class="card-body">
+                           <div class="btn-toolbar" role="toolbar">
+                              <div class="btn-group">
+                                 <button type="button" class="btn btn-light">
+                                    <strong>删除</strong>
+                                 </button>
+                                 <button type="button" class="btn btn-light">
+                                    <strong>标记为已读</strong>
+                                 </button>
+                              </div>
+                           </div>
+
+                           <div class="table-responsive mg-t-20 mg-b-15">
+                              <table class="table table-hover mb-0">
+                                 <tbody>
+                                    <tr class="active">
+                                       <td class="wd-5p">
+                                          <div class="d-flex custom-control custom-checkbox">
+                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                             <label class="custom-control-label" for="customCheck1"></label>
+                                          </div>
+                                       </td>
+                                       <td class="wd-15p">admin</td>
+                                       <td class="wd-55p">
+                                          <span class="badge badge-outlined badge-danger mr-2">系统</span>
+                                          <a href="mailbox-message.html">Lorem ipsum dolor sit amet, consectetuer adipiscing elit Lorem ipsum dolor...</a>
+                                       </td>
+                                       <td class="wd-25p">
+                                          <p class="mb-0 tx-10 tx-gray-500">01-02-2019, 11:46AM</p>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+
+
+                        </div>
+                     </div>
+                  </div>
+                  <!--/ End email-rightbar -->
+               </div>
+            </div>
+
+         {%include 'footer.html'%}
+         <!--/ Page Footer End -->
+      </div>
+      <!--/ Page Content End -->
+   </div>
+   <!--/ Page Container End -->
+   <!--================================-->
+
+   <!--================================-->
+   <!-- Footer Script -->
+   <!--================================-->
+   {%include 'commonjs.html'%}
+   <script>
+      var li1 = document.getElementById('1');
+      var li3 = document.getElementById('3');
+      li1.classlist.remove("active");
+      li3.classlist.add("active");
+   </script>
+</body>
+
+</html>

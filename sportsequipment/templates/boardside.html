@@ -1,0 +1,59 @@
+{% load static %}
+<div class="page-sidebar">
+   <div class="logo" style="padding:0 0;">
+      <a class="logo-img" href="{% url 'app:index' %}">
+         <img class="desktop-logo" src="{%static 'assets/images/neau.png'%}" alt="">
+      </a>
+      <i class="ion-ios-close-empty" id="sidebar-toggle-button-close"></i>
+      <h5>东北农业大学体育器材管理系统</h5>
+   </div>
+   <!--================================-->
+   <!-- Sidebar Menu Start -->
+   <!--================================-->
+   <div class="page-sidebar-inner">
+      <div class="page-sidebar-menu">
+         <ul class="accordion-menu">
+            <li class="open active">
+               <a href=""><i data-feather="home"></i>
+                  <span>体育器材租借</span><i class="accordion-icon fa fa-angle-left"></i></a>
+               <ul class="sub-menu" style="display: block;">
+                  <!-- Active Page here to design-->
+                  <li class="active" id="1"><a href="{%url 'app:index'%}">器材租借</a></li>
+                  <li id="2"><a href="{%url 'app:myrent'%}">我的租赁</a></li>
+                  <li id="3"><a href="{%url 'app:repair'%}">器材报修</a></li>
+                  <li id="4"><a href="{%url 'app:setting'%}">个人设置</a></li>
+               </ul>
+            </li>
+            <li>
+               <a href=""><i data-feather="mail"></i>
+                  <span>系统信息</span><span class="badge badge-warning ft-right">100+</span></a>
+               <ul class="sub-menu">
+                  <li><a href="{%url 'app:message'%}">信息中心</a></li>
+               </ul>
+            </li>
+            <!-- del left -->
+
+            <!-- del left -->
+         </ul>
+      </div>
+   </div>
+   <!--/ Sidebar Menu End -->
+   <!--================================-->
+   <!-- Sidebar Footer Start -->
+   <!--================================-->
+   <div class="sidebar-footer">
+      <a class="pull-left" href="page-profile.html" data-toggle="tooltip" data-placement="top"
+         data-original-title="Profile">
+         <i data-feather="user" class="ht-15"></i></a>
+      <a class="pull-left " href="mailbox.html" data-toggle="tooltip" data-placement="top"
+         data-original-title="Mailbox">
+         <i data-feather="mail" class="ht-15"></i></a>
+      <a class="pull-left" href="page-unlock.html" data-toggle="tooltip" data-placement="top"
+         data-original-title="Lockscreen">
+         <i data-feather="lock" class="ht-15"></i></a>
+      <a class="pull-left" href="page-singin.html" data-toggle="tooltip" data-placement="top"
+         data-original-title="Sing Out">
+         <i data-feather="log-out" class="ht-15"></i></a>
+   </div>
+   <!--/ Sidebar Footer End -->
+</div>

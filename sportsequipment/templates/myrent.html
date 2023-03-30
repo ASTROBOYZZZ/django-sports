@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+<head>
+   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="keyword" content="">
+   <meta name="author" content="" />
+   <!-- Page Title here to disign -->
+   <title>我的租借</title>
+   {%include 'head.html'%}
+</head>
+
+
+<body>
+   <!--================================-->
+   <!-- Page Container Start -->
+   <!--================================-->
+   <div class="page-container">
+      <!--================================-->
+      <!-- Page Sidebar Start -->
+      <!--================================-->
+      {%include 'boardside.html'%}
+      <!--/ Page Sidebar End -->
+      <!--================================-->
+      <!-- Page Content Start -->
+      <!--================================-->
+      <div class="page-content">
+         <!--================================-->
+         <!-- Page Header Start -->
+         <!--================================-->
+         {%include 'top.html'%}
+         <!--/ Page Header End -->
+         <!--================================-->
+         <!-- Page Inner Start -->
+         <!--================================-->
+         <div class="page-inner">
+            <!-- Main Wrapper -->
+            <div id="main-wrapper">
+               <!--================================-->
+               <!-- Breadcrumb Start -->
+               <!--================================-->
+               <!-- here to design -->
+               <div class="pageheader pd-t-25 pd-b-35">
+                  <div class="pd-t-5 pd-b-5">
+<!--                     <h1 class="pd-0 mg-0 tx-20">东北农业大学体育器材管理系统概述</h1>-->
+                  </div>
+               </div>
+               <!--/ Breadcrumb End -->
+               <!--================================-->
+            </div>
+            <!--/ Main Wrapper End -->
+         </div>
+         <!-- Label Alignment Form Start -->
+         <!--================================-->
+         <div class="col-md-12 col-lg-12">
+            <div class="card mg-b-20">
+               <div class="card-header">
+                  <h4 class="card-header-title">
+                     <span class="tx-14 tx-md-24 tx-dark">我的租借订单</span>
+                  </h4>
+               </div>
+
+
+               <table class="mt">
+                  <thead>
+                     <tr>
+                        <td>订单编号</td>
+                        <td>器材名称</td>
+                        <td>管理员id</td>
+                        <td>借用时间</td>
+                        <td>当前状态</td>
+                     </tr>
+                  </thead>
+                  <tbody>
+                  {%for i in orders%}
+                     <tr>
+                        <td>{{i.oid}}</td>
+                        <td><a href="{%url 'app:index'%}">{{i.equipment.brand}}{{i.equipment.ename}}</a></td>
+                        <td>{{i.equipment.controller.uid}}</td>
+                        <td>{{i.rent_time}}</td>
+                        {% if i.status == "已结束"%}
+                           <td style="color:green">已结束</td>
+                        {%elif i.status == "已归还"%}
+                           <td style="color:black">已归还</td>
+                        {%else%}
+                           <td style="color:red">未归还</td>
+                        {%endif%}
+                     </tr>
+                  {%endfor%}
+                  </tbody>
+               </table>
+
+
+            </div>
+         </div>
+         <!--/ Label Alignment Form End -->
+         <!--================================-->
+
+         <!--================================-->
+         <!--/ Page Inner End -->
+         <!--================================-->
+         <!--================================-->
+         <!-- Page Footer Start -->
+         <!--================================-->
+         {%include 'footer.html'%}
+         <!--/ Page Footer End -->
+      </div>
+      <!--/ Page Content End -->
+   </div>
+   <!--/ Page Container End -->
+   <!--================================-->
+
+   <!--================================-->
+   <!-- Footer Script -->
+   <!--================================-->
+   {%include 'commonjs.html'%}
+</body>
+
+</html>
