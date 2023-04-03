@@ -72,6 +72,7 @@
                         <td>器材名称</td>
                         <td>管理员id</td>
                         <td>借用时间</td>
+                        <td>应还时间</td>
                         <td>当前状态</td>
                      </tr>
                   </thead>
@@ -82,19 +83,20 @@
                         <td><a href="{%url 'app:index'%}">{{i.equipment.brand}}{{i.equipment.ename}}</a></td>
                         <td>{{i.equipment.controller.uid}}</td>
                         <td>{{i.rent_time}}</td>
-                        {% if i.status == "已结束"%}
+                        <td>{{i.return_time}}</td>
+                        {% if i.status == "已完成"%}
                            <td style="color:green">已结束</td>
                         {%elif i.status == "已归还"%}
-                           <td style="color:black">已归还</td>
+                           <td style="color:black"><a href="{%url 'app:index'%}">已归还</a></td>
+                        {%elif i.status == "待领取"%}
+                           <td style="color:orange">待领取(<a href="{%url 'app:recive_equipment'%}?oid={{i.oid}}">去领取</a>)</td>
                         {%else%}
-                           <td style="color:red">未归还</td>
+                           <td style="color:red">未归还(<a href="{%url 'app:return_equipment'%}?oid={{i.oid}}">去归还</a>)</td>
                         {%endif%}
                      </tr>
                   {%endfor%}
                   </tbody>
                </table>
-
-
             </div>
          </div>
          <!--/ Label Alignment Form End -->
@@ -118,6 +120,12 @@
    <!-- Footer Script -->
    <!--================================-->
    {%include 'commonjs.html'%}
+   <script>
+      var l1 = document.getElementById('l11');
+      var l2 = document.getElementById('l12');
+      l1.classList.remove("active");
+      l2.classList.add("active");
+   </script>
 </body>
 
 </html>

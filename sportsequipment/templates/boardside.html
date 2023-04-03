@@ -13,29 +13,48 @@
    <div class="page-sidebar-inner">
       <div class="page-sidebar-menu">
          <ul class="accordion-menu">
-            <li class="open active">
+            <li class="open active" id="l1">
                <a href=""><i data-feather="home"></i>
-                  <span>体育器材租借</span><i class="accordion-icon fa fa-angle-left"></i></a>
+                  <span>体育器材租借</span><i class="accordion-icon fa fa-angle-left"></i>
+               </a>
                <ul class="sub-menu" style="display: block;">
                   <!-- Active Page here to design-->
-                  <li class="active" id="1"><a href="{%url 'app:index'%}">器材租借</a></li>
-                  <li id="2"><a href="{%url 'app:myrent'%}">我的租赁</a></li>
-                  <li id="3"><a href="{%url 'app:repair'%}">器材报修</a></li>
-                  <li id="4"><a href="{%url 'app:setting'%}">个人设置</a></li>
+                  <li class="active" id="l11"><a href="{%url 'app:index'%}">器材租借</a></li>
+                  <li id="l12"><a href="{%url 'app:myrent'%}">我的租赁</a></li>
+                  <li id="l13"><a href="{%url 'app:repair'%}">器材报修</a></li>
+                  <li id="l14"><a href="{%url 'app:setting'%}">个人设置</a></li>
                </ul>
             </li>
-            <li>
+            <li id="l2">
                <a href="">
                   <i data-feather="mail"></i>
                   <span>系统信息</span>
-                  {% if messages|length > 0 %}
-                     <span class="badge badge-warning ft-right">{{messages|length}}</span>
+                  {% if unread_messages|length > 0 %}
+                     <span class="badge badge-warning ft-right">{{unread_messages|length}}</span>
+                  {% else %}
+                     <i class="accordion-icon fa fa-angle-left"></i>
                   {% endif %}
                </a>
-               <ul class="sub-menu">
-                  <li><a href="{%url 'app:message'%}">信息中心</a></li>
+               <ul class="sub-menu" style="display: block;">
+                  <li id="l21"><a href="{%url 'app:message'%}">信息中心</a></li>
                </ul>
             </li>
+
+            {% if user.manage %}
+               <li id="l3">
+                  <a href="">
+                     <i data-feather="database"></i>
+                     <span>管理员管理</span><i class="accordion-icon fa fa-angle-left"></i>
+                  </a>
+                  <ul class="sub-menu" style="display: block;">
+                     <!-- Active Page here to design-->
+                     <li id="l31"><a href="{%url 'app:manage_borrow'%}">处理租赁订单</a></li>
+                     <li id="l32"><a href="{%url 'app:manage_repair'%}">处理器材报修</a></li>
+                     <li id="l33"><a href="{%url 'app:index'%}">发放奖励</a></li>
+                     <li id="l34"><a href="{%url 'app:myrent'%}">添加器材</a></li>
+                  </ul>
+               </li>
+            {% endif %}
             <!-- del left -->
 
             <!-- del left -->
@@ -46,19 +65,5 @@
    <!--================================-->
    <!-- Sidebar Footer Start -->
    <!--================================-->
-   <div class="sidebar-footer">
-      <a class="pull-left" href="page-profile.html" data-toggle="tooltip" data-placement="top"
-         data-original-title="Profile">
-         <i data-feather="user" class="ht-15"></i></a>
-      <a class="pull-left " href="mailbox.html" data-toggle="tooltip" data-placement="top"
-         data-original-title="Mailbox">
-         <i data-feather="mail" class="ht-15"></i></a>
-      <a class="pull-left" href="page-unlock.html" data-toggle="tooltip" data-placement="top"
-         data-original-title="Lockscreen">
-         <i data-feather="lock" class="ht-15"></i></a>
-      <a class="pull-left" href="page-singin.html" data-toggle="tooltip" data-placement="top"
-         data-original-title="Sing Out">
-         <i data-feather="log-out" class="ht-15"></i></a>
-   </div>
    <!--/ Sidebar Footer End -->
 </div>

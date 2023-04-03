@@ -56,26 +56,28 @@
                            </div>
 
                            <div class="table-responsive mg-t-20 mg-b-15">
-                              <table class="table table-hover mb-0">
-                                 <tbody>
-                                    <tr class="active">
-                                       <td class="wd-5p">
-                                          <div class="d-flex custom-control custom-checkbox">
-                                             <input type="checkbox" class="custom-control-input" id="customCheck1">
-                                             <label class="custom-control-label" for="customCheck1"></label>
-                                          </div>
-                                       </td>
-                                       <td class="wd-15p">admin</td>
-                                       <td class="wd-55p">
-                                          <span class="badge badge-outlined badge-danger mr-2">系统</span>
-                                          <a href="{% url 'app:get_message' %}?mid={{message.mid}}">{{message.part}}...</a>
-                                       </td>
-                                       <td class="wd-25p">
-                                          <p class="mb-0 tx-10 tx-gray-500">01-02-2019, 11:46AM</p>
-                                       </td>
-                                    </tr>
-                                 </tbody>
-                              </table>
+                              {%for message in messages%}
+                                 <table class="table table-hover mb-0">
+                                    <tbody>
+                                       <tr class="active">
+                                          <td class="wd-5p">
+                                             <div class="d-flex custom-control custom-checkbox">
+                                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                                <label class="custom-control-label" for="customCheck1"></label>
+                                             </div>
+                                          </td>
+                                          <td class="wd-15p">admin</td>
+                                          <td class="wd-55p">
+                                             <span class="badge badge-outlined badge-danger mr-2">系统</span>
+                                             <a href="{% url 'app:get_message' %}?mid={{message.mid}}">{{message.part}}...</a>
+                                          </td>
+                                          <td class="wd-25p">
+                                             <p class="mb-0 tx-10 tx-gray-500">01-02-2019, 11:46AM</p>
+                                          </td>
+                                       </tr>
+                                    </tbody>
+                                 </table>
+                              {%endfor%}
                            </div>
 
 
@@ -99,10 +101,14 @@
    <!--================================-->
    {%include 'commonjs.html'%}
    <script>
-      var li1 = document.getElementById('1');
-      var li3 = document.getElementById('3');
-      li1.classlist.remove("active");
-      li3.classlist.add("active");
+      var l1 = document.getElementById('l11');
+      var l2 = document.getElementById('l21');
+      var L1 = document.getElementById('l1');
+      var L2 = document.getElementById('l2');
+      l1.classList.remove("active");
+      L1.classList.remove("open","active");
+      l2.classList.add("active");
+      L2.classList.add("open","active");
    </script>
 </body>
 

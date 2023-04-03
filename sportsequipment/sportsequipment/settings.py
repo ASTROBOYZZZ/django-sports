@@ -153,3 +153,13 @@ SESSION_COOKIE_AT_BROWSER_CLOSE = False  # 是否每次请求都保存Session，
 #图片地址设置
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR,"media")
+
+# 发送邮箱验证码
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = "smtp.qq.com"     # 服务器
+EMAIL_PORT = 25                 # 一般情况下都为25
+EMAIL_HOST_USER = "1459576020@qq.com"     # 账号
+EMAIL_HOST_PASSWORD = "xnlugqrmkwphgeha"     # （上面保存的授权码）
+EMAIL_USE_TLS = True       # 一般都为False
+EMAIL_FROM = "1459576020账号@qq.com"      # 邮箱来自
+email_title = '邮箱激活'

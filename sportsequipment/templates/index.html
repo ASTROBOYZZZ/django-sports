@@ -50,11 +50,15 @@
                         <div class="col-sm-6 col-xl-3">
                            <div class="card mg-b-20">
                               <div class="card-body text-center">
-                                 <img src="{{ MEDIA_URL }}{{i.img_url}}" alt="" class="img-fluid wd-100p ht-250">
+                                 <a href="{%url 'app:get_equipment'%}?eid={{i.eid}}">
+                                    <img src="{{ MEDIA_URL }}{{i.img_url}}" alt="" class="img-fluid wd-100p ht-250">
+                                 </a>
                                  <h5 class="tx-dark tx-13 tx-medium mg-y-15 d-block">{{i.brand}}{{i.ename}}</h5>
-                                 <p class="text-center mt-3">已经被借出{{i.count}}次</p>
-                                 <a href="{%url 'app:do_borrow'%}?eid={{i.eid}}" class="btn btn-sm btn-label-primary">立即借用</a>
-                                 <a href="" class="btn btn-sm btn-label-success">暂时不看</a>
+                                 <p>
+                                    {{i.introduce}}
+                                 </p>
+                                 <strong class="text-center mt-3">已经被借出{{i.count}}次</strong>
+                                 <a href="{%url 'app:do_borrow'%}?eid={{i.eid}}&consume=7" class="btn btn-sm btn-label-success">立即借用</a>
                               </div>
                            </div>
                         </div>

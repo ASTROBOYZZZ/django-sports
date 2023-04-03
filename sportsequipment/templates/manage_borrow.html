@@ -1,0 +1,133 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+   <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+   <meta charset="utf-8">
+   <meta http-equiv="x-ua-compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1">
+   <meta name="description" content="">
+   <meta name="keyword" content="">
+   <meta name="author" content="" />
+   <!-- Page Title here to disign -->
+   <title>首页</title>
+   {%include 'head.html'%}
+</head>
+
+
+<body>
+   <!--================================-->
+   <!-- Page Container Start -->
+   <!--================================-->
+   <div class="page-container">
+      <!--================================-->
+      <!-- Page Sidebar Start -->
+      <!--================================-->
+      {%include 'boardside.html'%}
+      <!--/ Page Sidebar End -->
+      <!--================================-->
+      <!-- Page Content Start -->
+      <!--================================-->
+      <div class="page-content">
+         <!--================================-->
+         <!-- Page Header Start -->
+         <!--================================-->
+         {%include 'top.html'%}
+         <!--/ Page Header End -->
+         <!--================================-->
+         <!-- Page Inner Start -->
+         <!--================================-->
+         <div class="page-inner">
+            <!-- Main Wrapper -->
+            <div id="main-wrapper">
+               <!--================================-->
+               <!-- Breadcrumb Start -->
+               <!--================================-->
+               <!-- here to design -->
+               <div class="row row-xs">
+                        <div class="col-sm-12 col-xl-12">
+                           <div class="card mg-b-20">
+                              <div class="card-header">
+                              <h4 class="card-header-title">
+                                 租赁订单管理
+                              </h4>
+                           </div>
+                              <div class="card-body collapse show" id="collapse1">
+                                 <table id="basicDataTable" class="table responsive nowrap">
+                                    <thead>
+                                       <tr>
+                                          <th>租赁编号</th>
+                                          <th>租赁用户</th>
+                                          <th>租赁器材</th>
+                                          <th>租赁时间</th>
+                                          <th>应归还时间</th>
+                                          <th>状态</th>
+                                       </tr>
+                                    </thead>
+                                    <tbody>
+                                       {%for order in orders%}
+                                           <tr>
+                                               <td>{{order.oid}}</td>
+                                               <td>{{order.user_id}}</td>
+                                               <td>{{order.equipment_id}}</td>
+                                               <td>{{order.rent_time}}</td>
+                                               <td>{{order.return_time}}</td>
+                                               {% if order.status == "已完成"%}
+                                                   <td style="color:green">已结束</td>
+                                                {%elif order.status == "已归还"%}
+                                                   <td style="color:black"><a href="{%url 'app:index'%}">已归还</a></td>
+                                                {%elif order.status == "待领取"%}
+                                                   <td style="color:orange">待领取(<a href="{%url 'app:recive_equipment'%}?oid={{order.oid}}">去领取</a>)</td>
+                                                {%else%}
+                                                   <td style="color:red">未归还(<a href="{%url 'app:return_equipment'%}?oid={{order.oid}}">去归还</a>)</td>
+                                                {%endif%}
+                                           </tr>
+                                       {% endfor %}
+                                    </tbody>
+                                 </table>
+                              </div>
+                           </div>
+                        </div>
+                  </div>
+               <!--/ Breadcrumb End -->
+               <!--================================-->
+            </div>
+            <!--/ Main Wrapper End -->
+         </div>
+         <!-- Label Alignment Form Start -->
+         <!--================================-->
+         <!--/ Label Alignment Form End -->
+         <!--================================-->
+
+         <!--================================-->
+         <!--/ Page Inner End -->
+         <!--================================-->
+         <!--================================-->
+         <!-- Page Footer Start -->
+         <!--================================-->
+         {%include 'footer.html'%}
+         <!--/ Page Footer End -->
+      </div>
+      <!--/ Page Content End -->
+   </div>
+   <!--/ Page Container End -->
+   <!--================================-->
+
+   <!--================================-->
+   <!-- Footer Script -->
+   <!--================================-->
+   {%include 'commonjs.html'%}
+   <script>
+      var l1 = document.getElementById('l11');
+      var l2 = document.getElementById('l31');
+      var L1 = document.getElementById('l1');
+      var L2 = document.getElementById('l3');
+      l1.classList.remove("active");
+      L1.classList.remove("open","active");
+      l2.classList.add("active");
+      L2.classList.add("open","active");
+   </script>
+</body>
+
+</html>

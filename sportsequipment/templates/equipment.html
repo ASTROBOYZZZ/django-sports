@@ -1,0 +1,127 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="zxx">
+
+<head>
+    <!-- The above 6 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="keyword" content="">
+    <meta name="author" content="" />
+    <!-- Page Title here to disign -->
+    <title>首页</title>
+    {%include 'head.html'%}
+</head>
+
+
+<body>
+    <!--================================-->
+    <!-- Page Container Start -->
+    <!--================================-->
+    <div class="page-container">
+        <!--================================-->
+        <!-- Page Sidebar Start -->
+        <!--================================-->
+        {%include 'boardside.html'%}
+        <!--/ Page Sidebar End -->
+        <!--================================-->
+        <!-- Page Content Start -->
+        <!--================================-->
+        <div class="page-content">
+            <!--================================-->
+            <!-- Page Header Start -->
+            <!--================================-->
+            {%include 'top.html'%}
+            <!--/ Page Header End -->
+            <!--================================-->
+            <!-- Page Inner Start -->
+            <!--================================-->
+            <div class="page-inner">
+                <!-- Main Wrapper -->
+                <div id="main-wrapper">
+                    <!--================================-->
+                    <!-- Breadcrumb Start -->
+                    <!--================================-->
+                    <!-- here to design -->
+                    <div class="row row-xs">
+                        <div class="col-sm-6 col-xl-12">
+                            <div class="container">
+                                <div class="row">
+                                    <div class="col-lg-6 col-xl-6">
+                                        <div class="product-details__img" style="width:500px; height:600px;">
+                                            <img src="{{MEDIA_URL}}{{equipment.img_url}}" alt="图片" />
+                                        </div>
+                                    </div>
+                                    <div class="col-lg-6 col-xl-6">
+                                        <div class="product-details__top">
+                                            <h3 class="product-details__title">{{equipment.brand}}{{equipment.ename}}<span><del>￥{{equipment.price}}</del></span> </h3>
+                                        </div>
+                                        <div class="product-details__reveiw">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div>
+                                        <div class="product-details__content">
+                                            <p class="product-details__content-text1">{{equipment.introduce}}</p>
+                                            <p style="color:green">{{equipment.status}}<br>
+
+                                            </p>
+                                            <p>已经被借出<strong class="text-center mt-3">{{equipment.count}}</strong>次</p>
+                                        </div>
+
+                                        <div class="product-details__quantity">
+                                            <h3 class="product-details__quantity-title">选择租赁天数</h3>
+                                            <div class="quantity-box">
+                                                <button type="button" class="sub"><i class="fa fa-minus"></i></button>
+                                                <input type="number" id="1" value="1" />
+                                                <button type="button" class="add"><i class="fa fa-plus"></i></button>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-xl-6">
+                                            <div class="product-details__social float-left">
+                                                <a href="{%url 'app:do_borrow'%}?eid={{i.eid}}" class="btn btn-sm btn-label-success">立即借用</a>
+                                            </div>
+                                            <div class="product-details__social float-right">
+                                                <a class="btn btn-sm btn-outline-primary" id="one_month">复制到剪切板，分享给其他人</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!--/ Breadcrumb End -->
+                    <!--================================-->
+                </div>
+                <!--/ Main Wrapper End -->
+            </div>
+            <!-- Label Alignment Form Start -->
+            <!--================================-->
+            <!--/ Label Alignment Form End -->
+            <!--================================-->
+
+            <!--================================-->
+            <!--/ Page Inner End -->
+            <!--================================-->
+            <!--================================-->
+            <!-- Page Footer Start -->
+            <!--================================-->
+            {%include 'footer.html'%}
+            <!--/ Page Footer End -->
+        </div>
+        <!--/ Page Content End -->
+    </div>
+    <!--/ Page Container End -->
+    <!--================================-->
+
+    <!--================================-->
+    <!-- Footer Script -->
+    <!--================================-->
+    {%include 'commonjs.html'%}
+</body>
+
+</html>
